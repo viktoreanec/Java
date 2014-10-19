@@ -1,0 +1,29 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>DZ2.2</title>
+</head>
+<body>
+<script style = "text/javascript">
+   var FIO = new Array();
+     do
+     {
+        FIO = prompt ("Введите свое ФИО:" , " ");
+        var reg = /^[а-яА-Яa-zA-Z. ]+$/;
+        var rez = reg.test(FIO);
+        if (rez == false)
+        {
+        alert ("Не коректно, Введите заново ФИО");
+        }
+        if (rez == true)
+        {
+        alert ("коректно");
+        break;
+        }
+     }
+while (true);
+alert ("Молодец!");
+
+</script>
+</body>
+</html>

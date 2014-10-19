@@ -1,0 +1,25 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>DZ3</title>
+</head>
+<body>
+    <form name="frm1">
+        ФИО: <input type="text" name="ФИО" />
+        <input type="button" value="Enter" onclick="checkLogin(login.value)" />
+    </form>
+    <script type="text/javascript">
+        function checkLogin(txt) {
+            var r = /^[А-Я][а-я]+(-[А-Я][а-я]+)? [А-Я][а-я]+( [А-Я][а-я]+)?$/.test('Иванов ИИ');
+            if (txt.search(r) < 0)
+                alert ("Все Ок!")
+            else
+                alert ("Некорректное имя!")
+        }
+    </script>
+</body>
+
+
+
+
+</html>

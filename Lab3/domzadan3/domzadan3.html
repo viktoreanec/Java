@@ -1,0 +1,48 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>DZ3</title>
+</head>
+<body>
+    <i id="info">Загрузка изображений...</i>
+    <br />
+    <img src="../domzadan3/images/archenemy.jpg" name="picture" />
+    <br />
+    <a href="#" onclick="return nextImage()">Следующее изображение</a>
+    <script type="text/javascript">
+        var currentImage = 0, count = 0;
+        var path = new Array("../domzadan3/images/archenemy.jpg", "../domzadan3/images/avengedsevenfold.jpg", 
+            "../domzadan3/images/evanescence.jpg", "../domzadan3/images/metallica.jpg");
+        var img = new Array ();		
+        // предзагрузка изображений галереи 
+        for (var i=0; i < path.length; i++) 
+        {
+            img[i] = new Image (320, 240);
+            img[i].src = path[i];			
+            img[i].onload = countImages;
+        }
+        // подсчет количества загруженных изображений и вывод информации 
+        function countImages () 
+        {
+            count++;
+            if (count == path.length)
+                info.innerText = "Готово!";
+            else			
+                info.innerText = "Загрузка изображений: " + count + " из " + path.length;			
+        }
+        function nextImage() {
+            if (count != path.length) {
+                alert ("Дождитесь пожалуйста загрузки всех изображений!");
+                return;
+            }		
+            currentImage++;
+            if (currentImage == path.length) 
+                currentImage = 0;
+            document.images["picture"].src = img[currentImage].src;
+            return false;
+        }
+    </script>
+</body>
+
+
+</html>

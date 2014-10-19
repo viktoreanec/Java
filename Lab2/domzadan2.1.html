@@ -1,0 +1,33 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Lorem ipsum</title>
+</head>
+<body>
+ <script style = "text/javascript">
+ 
+ var vopros = new Array();
+ var otvet = new Array();
+ 
+ alert ('При ответе на вопросы используйте "да" или "нет"');
+ 
+ vopros [0] = "Было ли Динамо чемпионом в 1986 году?";
+ vopros [1] = "Кот это животное?";
+ vopros [2] = "Путин козел?";
+ vopros [3] = "Эфиопия находиться в Африке?";
+ vopros [4] = "Порох придумали в Китае?";
+ 
+  
+ for (var i = 0, j = vopros.length; i < j; i++) otvet [i] = prompt (vopros [i]);
+with (document)
+    {
+    for (i = 0; i < j; i++)
+   {
+   write (vopros [i] + ' ----- '
+ + ((otvet [i] == 'да' ) ? 'ваш ответ - да -> это правильный ответ' : 'ваш ответ - нет -> это не верный ответ') + '<br>' );
+   }
+  }
+ 
+ </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>circle</title>
+</head>
+<body>
+<span id="elemToMove" style="position: absolute;">*</span>
+<script type="text/javascript">
+var R = 50, // радиус окружности
+a = 0, // угол (в радианах)
+da = 3 * Math.PI / 180, // приращение угла
+delay = 30; // задержка (в мсек.)
+interval = null;
+
+// функция движения элемента
+function moveElem(x, y) {
+// изменение координат элемента относительно позиции курсора (event.x, event.y)
+elemToMove.style.pixelLeft = x + R * Math.cos(a);
+elemToMove.style.pixelTop = y + R * Math.sin(a);
+// увеличение расстояния до полюса
+a += da;
+}
+
+function changeLocation(e) {
+    e = fixEvent(e); //добавляем кроссбраузерность
+    if(interval != null) clearInterval(interval); // стираем предыдущий интервал. проверяем на то, чтобы было что стирать :)
+    moveElem(e.pageX, e.pageY); //добавляем, чтоб не было задержек при перемещении, однако, стоит учесть, что двигаться объект будет  в два раза быстрее при перемещении курсора
+    interval = setInterval('moveElem('+e.pageX+', '+e.pageY+')', delay); // устанавливаем интервал статического вращения до тех пор, пока не сменится положение курсора. статическая функция. внутри самой функции event нам не нужен
+}
+
+function fixEvent(e) {
+   // получить объект событие для IE
+   e = e || window.event
+
+   // добавить pageX/pageY для IE
+   if ( e.pageX == null && e.clientX != null ) {
+      var html = document.documentElement
+      var body = document.body
+      e.pageX = e.clientX + (html && html.scrollLeft || body && body.scrollLeft || 0) - (html.clientLeft || 0)
+      e.pageY = e.clientY + (html && html.scrollTop || body && body.scrollTop || 0) - (html.clientTop || 0)
+   }
+
+   // добавить which для IE
+   if (!e.which && e.button) {
+      e.which = e.button & 1 ? 1 : ( e.button & 2 ? 3 : ( e.button & 4 ? 2 : 0 ) )
+   }
+
+   return e
+}
+
+// функция смены точки вращения при перемещении указателя мыши
+document.onmousemove = changeLocation;
+</script>
+</body>
+</html>
